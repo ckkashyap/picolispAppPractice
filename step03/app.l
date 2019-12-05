@@ -13,30 +13,34 @@
     )
 )
 
+(setq Goal '(goal 
+                     '(
+                         @Names XXX
+                         @Gen (mapcan '((Nm) (list 'nm '+TagNm Nm)) 'XXX)
+                         (select (@@)
+                          ((@Gen (nm +Tag) tsk))
+                          (^ @ 
+                           (fully 
+                            '((Nm) 
+                                (find 
+                                 '((This) (member Nm (: nm nm))) 
+                                 (; (-> @@) tgs) ) ) 
+                            (-> @Names) ) )
+                         )
+                      )
+                  )
+)
+(patch Goal 'XXX '(filter '((X) X) (mapcar '((X) (uppc (pack X)))  *Tags)))
+
 (de choTask (Dst)
    (diaform '(Dst)
                 (<grid> "--"
                      "Name" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Name 20)
-                     "Tags" (gui 'tags '(+Var +TextField) '*Tags 20)
+                     "Tags" (gui 'tags '(+Var +ListTextField) '*Tags '(","," ") 20)
                      (searchButton '(init> (: home query)))
                  )
                 (gui 'query '(+QueryChart) *ROWS 
-                         '(goal
-                             (quote
-                                 @Names (filter '((X) X) (mapcar '((X) (uppc (pack X)))  (split (chop *Tags) " ")))
-                                 @Gen (mapcan '((Nm) (list 'nm '+TagNm Nm)) '(filter '((X) X) (mapcar '((X) (uppc (pack X)))  (split (chop *Tags) " "))))
-                                 (select (@@)
-                                     ((@Gen (nm +Tag) tsk))
-                                       (^ @ 
-                                           (fully 
-                                              '((Nm) 
-                                                 (find 
-                                                    '((This) (member Nm (: nm nm))) 
-                                                    (; (-> @@) tgs) ) ) 
-                                              (-> @Names) ) )
-                                 )
-                              )
-                          )
+                          Goal
                           1
                          '((This) (list This))
                  )
