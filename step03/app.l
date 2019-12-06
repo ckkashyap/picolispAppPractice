@@ -18,13 +18,13 @@
    (diaform '(Dst)
       (<grid> "--"
           "Name" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Name 20)
-          "Tags" (gui 'tags '(+Var +ListTextField) '*Tags '(","," ") 20)
+          "Tags" (gui 'tags '(+Var +Val +ListTextField) '*Tags '((L) (extract uppc L)) '(","," ") 20)
           (searchButton '(init> (: home query)))
       )
       (gui 'query '(+QueryChart) *ROWS 
         '(goal 
-           '(@Names (setq *Names (filter prog (mapcar '((X) (uppc (pack X)))  *Tags)))
-             @Key (car *Names)
+           '(@Names *Tags
+             @Key (car *Tags)
              (select (@@)
               ((nm +TagNm @Key (nm +Tag) tsk))
               (^ @ 
