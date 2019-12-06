@@ -13,51 +13,47 @@
     )
 )
 
-(setq Goal '(goal 
-                     '(
-                         @Names XXX
-                         @Gen (mapcan '((Nm) (list 'nm '+TagNm Nm)) 'XXX)
-                         (select (@@)
-                          ((@Gen (nm +Tag) tsk))
-                          (^ @ 
-                           (fully 
-                            '((Nm) 
-                                (find 
-                                 '((This) (member Nm (: nm nm))) 
-                                 (; (-> @@) tgs) ) ) 
-                            (-> @Names) ) )
-                         )
-                      )
-                  )
-)
-(patch Goal 'XXX '(filter '((X) X) (mapcar '((X) (uppc (pack X)))  *Tags)))
 
 (de choTask (Dst)
    (diaform '(Dst)
-                (<grid> "--"
-                     "Name" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Name 20)
-                     "Tags" (gui 'tags '(+Var +ListTextField) '*Tags '(","," ") 20)
-                     (searchButton '(init> (: home query)))
-                 )
-                (gui 'query '(+QueryChart) *ROWS 
-                          Goal
-                          1
-                         '((This) (list This))
-                 )
-                 (<table> NIL (choTtl "Entries" '+Task)
-                     (quote
-                        ("em20 align" "Name")
-                     )
+      (<grid> "--"
+          "Name" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Name 20)
+          "Tags" (gui 'tags '(+Var +ListTextField) '*Tags '(","," ") 20)
+          (searchButton '(init> (: home query)))
+      )
+      (gui 'query '(+QueryChart) *ROWS 
+        '(goal 
+           '(@Names (setq *Names (filter prog (mapcar '((X) (uppc (pack X)))  *Tags)))
+             @Key (car *Names)
+             (select (@@)
+              ((nm +TagNm @Key (nm +Tag) tsk))
+              (^ @ 
+               (fully 
+                '((Nm) 
+                    (find 
+                     '((This) (member Nm (: nm nm))) 
+                     (; (-> @@) tgs) ) ) 
+                (-> @Names) ) )
+               )
+            )
+        )
+        1
+        '((This) (list This))
+      )
+      (<table> NIL (choTtl "Entries" '+Task)
+          (quote
+             ("em20 align" "Name")
+          )
 
-                     (do *ROWS 
-                         (<row> NIL
-                             (gui 1 '(+ObjView +TextField) '(: ttl))
-                         )
-                     )
-                 )
-                 (<spread>
-                    (scroll *ROWS)
-                    (newButton T Dst '(+Task)))
+          (do *ROWS 
+              (<row> NIL
+                  (gui 1 '(+ObjView +TextField) '(: ttl))
+              )
+          )
+      )
+      (<spread>
+         (scroll *ROWS)
+         (newButton T Dst '(+Task)))
      )
 )
 
