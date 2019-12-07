@@ -37,17 +37,19 @@
                )
             )
         )
-        1
-        '((This) (list This))
+        2
+        '((This) (list This (glue " " (mapcar '((This) (get (: nm) 'nm)) (: tgs) )) ))
       )
       (<table> NIL (choTtl "Entries" '+Task)
           (quote
              ("em20 align" "Name")
+             ("em20 align" "Tags")
           )
 
           (do *ROWS 
               (<row> NIL
                   (gui 1 '(+ObjView +TextField) '(: ttl))
+                  (gui 2 '(+TextField))
               )
           )
       )
