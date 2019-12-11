@@ -26,19 +26,19 @@
            '(@Names *Tags
              @Key (car *Tags)
              (select (@@)
-              ((nm +TagNm @Key (nm +Tag) tsk))
+              ((nm +Tag @Key tsk))
               (^ @ 
                (fully 
                 '((Nm) 
                     (find 
-                     '((This) (member Nm (: nm nm))) 
+                     '((This) (member Nm (: nm))) 
                      (; (-> @@) tgs) ) ) 
                 (-> @Names) ) )
                )
             )
         )
         2
-        '((This) (list This (glue " " (mapcar '((This) (get (: nm) 'nm)) (: tgs) )) ))
+        '((This) (list This (glue " " (mapcar '((This) (: nm)) (: tgs) )) ))
       )
       (<table> NIL (choTtl "Entries" '+Task)
           (quote
@@ -57,6 +57,10 @@
          (scroll *ROWS)
          (newButton T Dst '(+Task)))
      )
+)
+
+(de choTag (Dst)
+    (out "+/tmp/dingo.txt"  (prinl "--> " Dst))
 )
 
 (de main () 

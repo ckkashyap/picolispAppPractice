@@ -9,3 +9,4 @@ idForm in app.l simply invokes choTask since \*ID id not set in a GET operation
 
 Use pilog to select TAGS
 
+Display the tags along with the task titles
