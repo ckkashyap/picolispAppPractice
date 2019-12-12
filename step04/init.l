@@ -2,13 +2,13 @@
 (pool "test.db")
 
 
-(setq *RED (new! '(+TagNm) 'yy "DINGO"))
-(setq *BLUE (new! '(+TagNm) 'yy "BLUE"))
+(setq *RED (new! '(+TagNm) 'yy "TGNM1"))
+(setq *BLUE (new! '(+TagNm) 'yy "TGNM2"))
 
 (de new-task (Ttl Tgs)
     (let N (new! '(+Task) 'ttl Ttl)
          (for Tg (cons "ALL" Tgs)
-              (put!> N 'tgs (new! '(+Tag) 'nm Tg 'tsk N 'xx *RED))
+              (put!> N 'tgs (new! '(+Tag) 'nm Tg 'tsk N 'xx (if (> 5 (rand 1 10)) *RED *BLUE)))
          )
     )
 )
@@ -23,7 +23,7 @@
 (new-task "Item 8" (list "RED" "BLUE"))
 
 (de print-task (This)
-    (prinl (: ttl) ": " " [" (glue ", " (mapcar '( (This)  (: nm) ) (: tgs) ) ) "]" )
+    (prinl (: ttl) "<" This  ">: " " [" (glue ", " (mapcar '( (This)  (pack (: nm) "<" This ">" " " (: xx yy) "<" (: xx)  ">"   )) (: tgs) ) ) "]" )
 )
 
 (de print-all ()

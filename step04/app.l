@@ -65,6 +65,7 @@
 
 (de main () 
     (load "init.l")
+    (print-all)
     (prinl "READY"))
 
 (de go ()
