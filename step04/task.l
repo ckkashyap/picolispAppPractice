@@ -6,13 +6,12 @@
                         "Title" (gui '(+Init +TextField) "ABCD" 40)
 
                         (gui '(+Set +E/R +Chart) '((L) (filter bool L)) '(tgs : home obj) 4
-                              '( (This) (list This (: xx yy)))
+                              '( (This) (list This (: nm)))
                                  #'((X) (car X))
                                  '((L D)                                    # 'Get'- function
-                                        (out "+/tmp/dingo.txt" (prinl "L = " L " D = " D " CADR = " (cadr L)))
-                                        (and D (put!> (get D 'xx) 'yy (cadr L) ))
-                                        (commit)
-                                        #(and D (put!> D 'nm (get (car L) 'nm) ))
+                                        (out "+/tmp/dingo.txt" (prinl "L = " L " D = " D  " " (with D (: nm)) ))
+                                        (when D
+                                             (when (not (= (cadr L) (with D (: nm)))) (put!> D 'nm (cadr L) )) )
                                         D ) 
                               )
                         (<table> 'chart ,"Tags"

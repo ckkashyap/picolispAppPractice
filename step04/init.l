@@ -8,7 +8,7 @@
 (de new-task (Ttl Tgs)
     (let N (new! '(+Task) 'ttl Ttl)
          (for Tg (cons "ALL" Tgs)
-              (put!> N 'tgs (new! '(+Tag) 'nm Tg 'tsk N 'xx (if (> 5 (rand 1 10)) *RED *BLUE)))
+              (put!> N 'tgs (new! '(+Tag) 'nm Tg 'tsk N ))
          )
     )
 )
