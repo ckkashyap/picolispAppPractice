@@ -1,7 +1,6 @@
 (call 'rm '-f "test.db")
 (pool "test.db")
 
-
 (setq *ALL (new! '(+TagNm) 'nm "ALL"))
 (setq *RED (new! '(+TagNm) 'nm "RED"))
 (setq *BLUE (new! '(+TagNm) 'nm "BLUE"))

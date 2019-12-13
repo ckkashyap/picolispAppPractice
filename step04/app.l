@@ -24,17 +24,19 @@
       (gui 'query '(+QueryChart) *ROWS 
         '(goal 
            '(@Names *Tags
-             @Key (car *Tags)
-             (select (@@)
-              ((nm +TagNm @Key (nm +Tag) tsk))
-              (^ @ 
-               (fully 
-                '((Nm) 
-                    (find 
-                     '((This) (member Nm (: nm nm))) 
-                     (; (-> @@) tgs) ) ) 
-                (-> @Names) ) )
-               )
+                @Key (car *Tags)
+                (select (@@)
+                   ((nm +TagNm @Key (nm +Tag) tsk))
+                   (^ @ 
+                      (fully 
+                          '((Nm) 
+                              (find 
+                                 '((This) (member Nm (: nm nm))) 
+                                 (; (-> @@) tgs) ) ) 
+                          (-> @Names)
+                      )
+                   )
+                )
             )
         )
         2
@@ -56,7 +58,7 @@
       (<spread>
          (scroll *ROWS)
          (newButton T Dst '(+Task)))
-     )
+   )
 )
 
 (de choTag (Dst)
