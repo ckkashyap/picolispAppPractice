@@ -11,5 +11,5 @@
 
 
 (class +TagNm +Entity)
-(rel nm (+Key +String))
+(rel nm (+IdxFold +String))
 
