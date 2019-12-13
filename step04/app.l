@@ -26,7 +26,7 @@
            '(@Names *Tags
              @Key (car *Tags)
              (select (@@)
-              ((nm +Tag @Key tsk))
+              ((nm +TagNm @Key (nm +Tag) tsk))
               (^ @ 
                (fully 
                 '((Nm) 
