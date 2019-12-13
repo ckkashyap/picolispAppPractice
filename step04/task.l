@@ -11,16 +11,18 @@
                                              (put!> D 'nm (car L) ) )
                                         D ) 
                         )
-                        (<table> 'chart "Tags1"
-                              '((NIL) ("em1")("em1"))
-                              (do 6
-                                 (<row> (alternating)
-                                    (gui 1 '(+TextField) 40)
-                                    (gui 2 '(+DelRowButton))
-                                    (gui 3 '(+BubbleButton)) ) )
-                        )
-                        (scroll 6 T)
                 )
+                (--)
+                (<table> NIL "Tags"
+                      '((NIL) (NIL)(NIL))
+                      (do 6
+                         (<row> (alternating)
+                            (gui 1 '(+TextField) 40)
+                            (gui 2 '(+DelRowButton))
+                            (gui 3 '(+BubbleButton)) ) )
+                )
+                (scroll 6 T)
+                
              )
         )
     )
