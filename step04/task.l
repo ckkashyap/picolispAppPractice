@@ -6,15 +6,18 @@
 
                         (gui '(+Set +E/R +Chart) '((L) (filter bool L)) '(tgs : home obj) 3
                               '( (This) (list (: nm)))
-                                 '((L D)
-                                        (when D
-                                             (put!> D 'nm (car L) ) )
-                                        D ) 
+                              '((L D)
+                                     (out "+/tmp/dingo.txt" (prinl "L = " L " D = " D  "(: home obj) = " (: home obj)))
+                                     (cond
+                                          ((and D (car L)) (put!> D 'nm (car L) ) D)
+                                          ((car L) (new! '(+Tag) 'nm (car L) 'tsk (: home obj)))
+                                          (T D))
+                               )
                         )
                 )
                 (--)
                 (<table> NIL "Tags"
-                      '((NIL) (NIL)(NIL))
+                      '(NIL NIL NIL)
                       (do 6
                          (<row> (alternating)
                             (gui 1 '(+TextField) 40)
