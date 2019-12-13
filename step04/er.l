@@ -7,10 +7,9 @@
 
 (class +Tag +Entity)
 (rel tsk (+Joint) tgs (+Task))
-(rel nm (+IdxFold +String))
-#(rel xx (+Ref +Link) NIL (+TagNm))
-#
-#
-#(class +TagNm +Entity)
-#(rel yy (+Key +String))
+(rel nm (+Ref +Link) NIL (+TagNm))
+
+
+(class +TagNm +Entity)
+(rel nm (+Key +String))
 

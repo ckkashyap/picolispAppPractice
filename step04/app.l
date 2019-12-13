@@ -31,14 +31,14 @@
                (fully 
                 '((Nm) 
                     (find 
-                     '((This) (member Nm (: nm))) 
+                     '((This) (member Nm (: nm nm))) 
                      (; (-> @@) tgs) ) ) 
                 (-> @Names) ) )
                )
             )
         )
         2
-        '((This) (list This (glue " " (mapcar '((This) (: nm)) (: tgs) )) ))
+        '((This) (list This (glue " " (mapcar '((This) (: nm nm)) (: tgs) )) ))
       )
       (<table> NIL (choTtl "Entries" '+Task)
           (quote

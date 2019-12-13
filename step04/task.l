@@ -5,12 +5,12 @@
                         "Title" (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 40)
 
                         (gui '(+Set +E/R +Chart) '((L) (filter bool L)) '(tgs : home obj) 3
-                              '( (This) (list (: nm)))
+                              '( (This) (list (: nm nm)))
                               '((L D)
                                      (out "+/tmp/dingo.txt" (prinl "L = " L " D = " D  "(: home obj) = " (: home obj)))
                                      (cond
-                                          ((and D (car L)) (put!> D 'nm (car L) ) D)
-                                          ((car L) (new! '(+Tag) 'nm (car L) 'tsk (: home obj)))
+                                          ((and D (car L)) (put!> D 'nm (request! '(+TagNm) 'nm (car L)) ) D)
+                                          ((car L) (new! '(+Tag) 'nm (request! '(+TagNm) 'nm (car L)) 'tsk (: home obj)))
                                           (T D))
                                )
                         )
