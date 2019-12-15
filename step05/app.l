@@ -101,4 +101,5 @@
     (prinl "READY"))
 
 (de go ()
+(pool "test.db")
 (server 8080 "!work"))
