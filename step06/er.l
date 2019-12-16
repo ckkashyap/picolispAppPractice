@@ -18,7 +18,6 @@
 
 (class +Cmt +Entity)
 (rel tsk (+Joint) cmts (+Task))
-(rel nm (+Ref +Link) NIL (+TagNm))
 (rel cmt (+String))
 (dm url> (Tab)
   (and (list "update.l" '*ID This)) )
