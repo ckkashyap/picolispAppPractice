@@ -1,10 +1,10 @@
 (call 'rm '-f "test.db")
 (pool "test.db")
 
-(setq *ALL (new! '(+TagNm) 'nm "ALL"))
-(setq *RED (new! '(+TagNm) 'nm "RED"))
-(setq *BLUE (new! '(+TagNm) 'nm "BLUE"))
-(setq *GREEN (new! '(+TagNm) 'nm "GREEN"))
+(setq *ALL (new! '(+TagNm) 'nm "ALL" 'dsc "All items"))
+(setq *RED (new! '(+TagNm) 'nm "RED" 'dsc "All RED items"))
+(setq *BLUE (new! '(+TagNm) 'nm "BLUE" 'dsc "All BLUE items"))
+(setq *GREEN (new! '(+TagNm) 'nm "GREEN" 'dsc "All GREEN items"))
 
 (de new-task (Ttl Tgs)
     (let N (new! '(+Task) 'ttl Ttl)

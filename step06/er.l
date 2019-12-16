@@ -13,6 +13,7 @@
 
 (class +TagNm +Entity)
 (rel nm (+IdxFold +String))
+(rel dsc (+String))
 (dm url> (Tab)
   (and (list "tag.l" '*ID This)) )
 

@@ -9,7 +9,6 @@
     (action
         (html 0 Ttl "@lib.css" NIL
             (idForm "TITLE" '(choTask) 'ttl '+Task *CanEdit *CanDelete '((: ttl)))
-            (idForm "TAG" '(choTag) 'nm '+TagNm *CanEdit *CanDelete '((: nm)))
         )
     )
 )
