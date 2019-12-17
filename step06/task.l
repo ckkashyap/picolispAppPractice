@@ -2,26 +2,31 @@
    (html 0 Ttl "@lib.css" NIL
        (idForm "TITLE" '(choTask) 'ttl '+Task *CanEdit *CanDelete '( (: ttl) )
 
-           (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100 2)
+           (<grid> 1
+            (gui '(+E/R +DateField) '(dt : home obj) 40)
+            (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100 2)
+           )
 
            (<table> '((style . "border: dotted 1px;")) "Updates" '(NIL NIL)
                 (<row> NIL
                     (<td> NIL
-                        (gui '(+E/R +Chart) '(cmts : home obj) 2
-                              '( (This) (list (: cmt)))
+                        (gui '(+E/R +Chart) '(cmts : home obj) 4
+                              '( (This) (list (: cmt) (: dt) (: tm) ))
                               '((L D)
                                    (cond
-                                      ((and D (car L)) (put!> D 'cmt (car L)) D)
-                                      ((car L) (new! '(+Cmt) 'cmt (car L) 'tsk (: home obj)))
+                                      ((and D (car L)) (put!> D 'cmt (car L) ) D)
+                                      ((car L) (new! '(+Cmt) 'cmt (car L) 'dt (date) 'tm (time) 'tsk (: home obj)))
                                       (T D))
                                )
                         )
                         (<table> NIL NIL
-                              '(NIL NIL)
+                              '(NIL NIL NIL NIL)
                               (do 3
                                  (<row> (alternating)
                                     (gui 1 '(+TextField) 150 3)
-                                    (gui 2 '(+DelRowButton))
+                                    (gui 2 '(+DateField))
+                                    (gui 3 '(+TimeField))
+                                    (gui 4 '(+DelRowButton))
                                  )
                               )
                         )

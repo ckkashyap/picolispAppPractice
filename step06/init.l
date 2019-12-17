@@ -7,13 +7,13 @@
 (setq *GREEN (new! '(+TagNm) 'nm "GREEN" 'dsc "All GREEN items"))
 
 (de new-task (Ttl Tgs)
-    (let N (new! '(+Task) 'ttl Ttl)
+    (let N (new! '(+Task) 'ttl Ttl  'dt (date 2019 12 1))
          (for Tg (cons *ALL Tgs)
               (put!> N 'tgs (new! '(+Tag) 'nm Tg 'tsk N ))
          )
-         (put!> N 'cmts (new! '(+Cmt) 'cmt "UPDATE1" 'tsk N ))
-         (put!> N 'cmts (new! '(+Cmt) 'cmt "UPDATE2" 'tsk N ))
-         (put!> N 'cmts (new! '(+Cmt) 'cmt "UPDATE3" 'tsk N ))
+         (put!> N 'cmts (new! '(+Cmt) 'cmt "UPDATE1" 'tsk N 'dt (date 2019 12 1) 'tm (time) ))
+         (put!> N 'cmts (new! '(+Cmt) 'cmt "UPDATE2" 'tsk N 'dt (date 2019 12 2) 'tm (time) ))
+         (put!> N 'cmts (new! '(+Cmt) 'cmt "UPDATE3" 'tsk N 'dt (date 2019 12 3) 'tm (time) ))
          
     )
 )
