@@ -45,14 +45,14 @@
                         )
                         (<table> NIL NIL
                               '(NIL NIL NIL NIL)
-                              (do 6
+                              (do 10
                                  (<row> (alternating)
                                     (gui 1 '(+DstButton))
                                     (gui 2 '(+DbHint +TextField) '(nm +TagNm) 10)
                                     (gui 3 '(+DelRowButton))
                                     (gui 4 '(+BubbleButton)) ) )
                         )
-                        (scroll 6 T)
+                        (scroll 10 T)
                      )
                 )
            )
