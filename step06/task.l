@@ -1,9 +1,8 @@
 (action
    (html 0 Ttl "@lib.css" NIL
        (idForm "TITLE" '(choTask) 'ttl '+Task *CanEdit *CanDelete '( (: ttl) )
-           (<grid> 2
-               "Title" (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 200 2)
-           )
+
+           (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100 2)
 
            (<table> '((style . "border: dotted 1px;")) "Updates" '(NIL NIL)
                 (<row> NIL
@@ -39,7 +38,7 @@
                                       (T D))
                                )
                         )
-                        (<table> NIL "Tags"
+                        (<table> NIL NIL
                               '(NIL NIL NIL NIL)
                               (do 6
                                  (<row> (alternating)
