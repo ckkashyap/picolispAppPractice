@@ -2,35 +2,35 @@
    (html 0 Ttl "@lib.css" NIL
        (idForm "TITLE" '(choTask) 'ttl '+Task *CanEdit *CanDelete '( (: ttl) )
 
-           (<grid> 1
-            (gui '(+E/R +DateField) '(dt : home obj) 40)
-            (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100 2)
+           (<grid> 2
+            "Due" (gui '(+E/R +DateField) '(dt : home obj) 10)
+            "Title" (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100 2)
            )
 
            (<table> '((style . "border: dotted 1px;")) "Updates" '(NIL NIL)
                 (<row> NIL
                     (<td> NIL
                         (gui '(+E/R +Chart) '(cmts : home obj) 4
-                              '( (This) (list (: cmt) (: dt) (: tm) ))
+                              '( (This) (list NIL (: cmt) (: dt) (: tm)  ))
                               '((L D)
                                    (cond
-                                      ((and D (car L)) (put!> D 'cmt (car L) ) D)
-                                      ((car L) (new! '(+Cmt) 'cmt (car L) 'dt (date) 'tm (time) 'tsk (: home obj)))
+                                      ((and D (cadr L))  D)
+                                      ((cadr L) (new! '(+Cmt) 'cmt (cadr L) 'dt (date) 'tm (time) 'tsk (: home obj)))
                                       (T D))
                                )
                         )
                         (<table> NIL NIL
                               '(NIL NIL NIL NIL)
-                              (do 3
+                              (for R (range 1 5)
                                  (<row> (alternating)
-                                    (gui 1 '(+TextField) 150 3)
-                                    (gui 2 '(+DateField))
-                                    (gui 3 '(+TimeField))
-                                    (gui 4 '(+DelRowButton))
+                                    (if (= R 1) (gui 1 '(+InsRowButton)) (gui 1 '(+DelRowButton)))
+                                    (gui 2 '(+TextField) 150 3)
+                                    (gui 3 '(+DateField))
+                                    (gui 4 '(+TimeField))
                                  )
                               )
                         )
-                        (scroll 3 T)
+                        (scroll 5 T)
                     )
                     (<td> '((style . "vertical-align:top;")) 
 
