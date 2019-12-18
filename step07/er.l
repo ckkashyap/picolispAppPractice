@@ -1,0 +1,26 @@
+(class +Task +Entity)
+(rel ttl (+IdxFold +String))
+(rel cmts (+List +Joint) tsk (+Cmt))
+(rel tgs (+List +Joint) tsk (+Tag))
+(rel dt (+Need +Ref +Date))
+
+(dm url> (Tab)
+  (and (list "task.l" '*ID This)) )
+
+(class +Tag +Entity)
+(rel tsk (+Joint) tgs (+Task))
+(rel nm (+Ref +Link) NIL (+TagNm))
+
+(class +TagNm +Entity)
+(rel nm (+IdxFold +String))
+(rel dsc (+String))
+(dm url> (Tab)
+  (and (list "tag.l" '*ID This)) )
+
+(class +Cmt +Entity)
+(rel tsk (+Joint) cmts (+Task))
+(rel cmt (+String))
+(rel dt (+Need +Ref +Date))
+(rel tm (+Need +Ref +Time))
+(dm url> (Tab)
+  (and (list "update.l" '*ID This)) )
