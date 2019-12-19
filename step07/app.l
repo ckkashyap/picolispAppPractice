@@ -1,17 +1,36 @@
 (load "er.l" "@lib/http.l" "@lib/xhtml.l" "@lib/form.l")
 
+(setq *Css '("@lib.css" "lib.css" "menu.css"))
+
 (setq *CanEdit T)
 (setq *CanDelete T)
 (setq *ROWS 10)
 
+
+(de menu (Ttl . Prg)
+   (action
+      (html 0 Ttl *Css NIL
+         (<ping> 7)
+         (<layout>
+            ((180 0 'menu)
+               (<div> @
+                  (expires)
+                  (<menu>
+                     ("Home" "!work")
+                     (NIL (<hr>))
+                     (T ""
+                        ("Tasks" (and "task.l")))
+                      ) )
+               ((NIL NIL 'main)
+                  (<div> @ (run Prg 1)) ) ) ) ) ) )
+
 (de work ()
-    (app)
-    (action
-        (html 0 Ttl "@lib.css" NIL
-            (idForm "TITLE" '(choTask) 'ttl '+Task *CanEdit *CanDelete '((: ttl)))
-        )
-    )
-)
+   (setq *Url "!work")
+   (and (app) (setq *Menu 1))
+   (menu "PicoLisp App"
+      )
+   )
+
 
 (de choTask (Dst)
    (diaform '(Dst)
