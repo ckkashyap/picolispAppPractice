@@ -3,7 +3,7 @@
 
         (<grid> 2
          "Due" (gui '(+E/R +DateField) '(dt : home obj) 10)
-         "Title" (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100 2)
+         "Title" (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100)
         )
 
         (<table> '((style . "border: dotted 1px;")) "Updates" '(NIL NIL)

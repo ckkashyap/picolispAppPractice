@@ -35,9 +35,11 @@
 (de choTask (Dst)
    (diaform '(Dst)
       (<grid> "--"
-          "Name" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Title 20)
-          "Tags" (gui 'tags '(+Var +Val +ListTextField) '*Tags '((L) (extract uppc L)) '(","," ") 20)
+          "Title" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Title 100)
+          "Tags" (gui 'tags '(+Var +Val +ListTextField) '*Tags '((L) (extract uppc L)) '(","," ") 100)
           (searchButton '(init> (: home query)))
+          (gui '(+Button) "Work" '(setq *Tags "WORK OPEN") )
+          (gui '(+Button) "Fun" '(setq *Tags "FUN OPEN") )
       )
       (gui 'query '(+QueryChart) *ROWS 
         '(goal 
