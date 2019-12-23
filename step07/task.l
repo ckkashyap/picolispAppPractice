@@ -6,7 +6,7 @@
          "Title" (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100)
         )
 
-        (<table> '((style . "border: dotted 1px;")) "Updates" '(NIL NIL)
+        (<table> '(chart (style . "border: dotted 1px;")) "Updates" '(NIL NIL)
              (<row> NIL
                  (<td> NIL
                      (gui '(+E/R +Chart) '(cmts : home obj) 4

@@ -37,6 +37,7 @@
       (<grid> "--"
           "Title" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Title 100)
           "Tags" (gui 'tags '(+Var +Val +ListTextField) '*Tags '((L) (extract uppc L)) '(","," ") 100)
+          "Tags" (gui 'tags2 '(+Var +Val +ListTextField) '*Tags2 '((L) (extract uppc L)) '(","," ") 100)
           (searchButton '(init> (: home query)))
           (gui '(+Button) "Work" '(setq *Tags "WORK OPEN") )
           (gui '(+Button) "Fun" '(setq *Tags "FUN OPEN") )
@@ -45,6 +46,7 @@
         '(goal 
            '(   @Ttl *Title
                 @Names *Tags
+                @Tags2 *Tags2
                 @Key (car *Tags)
                 (select (@@)
                    ((nm +TagNm @Key (nm +Tag) tsk))
@@ -53,27 +55,36 @@
                       (fully 
                           '((Nm) 
                               (find 
-                                 '((This) (member Nm (: nm nm))) 
+                                 '((This) (= Nm (: nm nm))) 
                                  (; (-> @@) tgs) ) ) 
                           (-> @Names)
+                      )
+                   )
+                   (^ @ 
+                      (fully 
+                          '((Nm) 
+                              (not (find 
+                                 '((This) (= Nm (: nm nm))) 
+                                 (; (-> @@) tgs) ) ) )
+                          (-> @Tags2)
                       )
                    )
                 )
             )
         )
         2
-        '((This) (list This (glue " " (mapcar '((This) (: nm nm)) (: tgs) )) ))
+        '((This) (list This (: dt) ))
       )
-      (<table> NIL (choTtl "Entries" '+Task)
+      (<table> 'chart (choTtl "Entries" '+Task)
           (quote
              ("em20 align" "Name")
              ("em20 align" "Tags")
           )
 
           (do *ROWS 
-              (<row> NIL
+              (<row> (alternating)
                   (gui 1 '(+ObjView +TextField) '(: ttl))
-                  (gui 2 '(+TextField))
+                  (gui 2 '(+DateField))
               )
           )
       )
