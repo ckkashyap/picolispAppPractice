@@ -1,14 +1,13 @@
 (call 'rm '-f "test.db")
 (pool "test.db")
 
-(setq *ALL (new! '(+TagNm) 'nm "ALL" 'dsc "All items"))
 (setq *RED (new! '(+TagNm) 'nm "RED" 'dsc "All RED items"))
 (setq *BLUE (new! '(+TagNm) 'nm "BLUE" 'dsc "All BLUE items"))
 (setq *GREEN (new! '(+TagNm) 'nm "GREEN" 'dsc "All GREEN items"))
 
 (de new-task (Ttl Tgs)
     (let N (new! '(+Task) 'ttl Ttl  'dt (date 2019 12 1))
-         (for Tg (cons *ALL Tgs)
+         (for Tg Tgs
               (put!> N 'tgs (new! '(+Tag) 'nm Tg 'tsk N ))
          )
          (put!> N 'cmts (new! '(+Cmt) 'cmt "UPDATE1" 'tsk N 'dt (date 2019 12 1) 'tm (time) ))

@@ -36,20 +36,22 @@
    (diaform '(Dst)
       (<grid> "--"
           "Title" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Title 100)
-          "Tags" (gui 'tags '(+Var +Val +ListTextField) '*Tags '((L) (extract uppc L)) '(","," ") 100)
-          "Tags" (gui 'tags2 '(+Var +Val +ListTextField) '*Tags2 '((L) (extract uppc L)) '(","," ") 100)
+          "Contains" (gui 'tags '(+Var +Val +ListTextField) '*Tags1 '((L) (extract uppc L)) '(","," ") 100)
+          "!Contains" (gui 'tags2 '(+Var +Val +ListTextField) '*Tags2 '((L) (extract uppc L)) '(","," ") 100)
           (searchButton '(init> (: home query)))
-          (gui '(+Button) "Work" '(setq *Tags "WORK OPEN") )
-          (gui '(+Button) "Fun" '(setq *Tags "FUN OPEN") )
+          (gui '(+Button) "Work" '(setq *Tags1 "WORK OPEN") )
+          (gui '(+Button) "Fun" '(setq *Tags1 "FUN OPEN") )
       )
       (gui 'query '(+QueryChart) *ROWS 
         '(goal 
            '(   @Ttl *Title
-                @Names *Tags
+                @Tags1 *Tags1
                 @Tags2 *Tags2
-                @Key (car *Tags)
+                @Key (car *Tags1)
+                @X NIL
                 (select (@@)
-                   ((nm +TagNm @Key (nm +Tag) tsk))
+                   #((nm +TagNm @Key (nm +Tag) tsk))
+                   ((ttl +Task @X))
                    (part @Ttl @@ ttl)
                    (^ @ 
                       (fully 
@@ -57,7 +59,7 @@
                               (find 
                                  '((This) (= Nm (: nm nm))) 
                                  (; (-> @@) tgs) ) ) 
-                          (-> @Names)
+                          (-> @Tags1)
                       )
                    )
                    (^ @ 
@@ -77,8 +79,8 @@
       )
       (<table> 'chart (choTtl "Entries" '+Task)
           (quote
-             ("em20 align" "Name")
-             ("em20 align" "Tags")
+             ("em20 align" "Title")
+             ("em2 align" "Due")
           )
 
           (do *ROWS 
