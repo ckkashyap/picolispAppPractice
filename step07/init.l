@@ -1,5 +1,5 @@
 (call 'rm '-f "test.db")
-(pool "test.db")
+(pool *DBNM)
 
 (setq *RED (new! '(+TagNm) 'nm "RED" 'dsc "All RED items"))
 (setq *BLUE (new! '(+TagNm) 'nm "BLUE" 'dsc "All BLUE items"))

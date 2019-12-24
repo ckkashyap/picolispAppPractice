@@ -2,7 +2,7 @@
     (idForm "TITLE" '(choTask) 'ttl '+Task *CanEdit *CanDelete '( (: ttl) )
 
         (<grid> 2
-         "Due" (gui '(+E/R +DateField) '(dt : home obj) 10)
+         "Due" (gui '(+E/R +DateField) '(dt : home obj) 11)
          "Title" (gui '(+E/R +Cue +TextField) '(ttl : home obj) "title" 100)
         )
 
@@ -33,12 +33,12 @@
                  )
                  (<td> '((style . "vertical-align:top;")) 
 
-                     (gui '(+E/R +Chart) '(tgs : home obj) 4
-                           '( (This) (list (: nm) (: nm nm)))
+                     (gui '(+E/R +Chart) '(tgs : home obj) 3
+                           '( (This) (list (: nm nm)))
                            '((L D)
                                 (cond
-                                   ((and D (cadr L)) (put!> D 'nm (request! '(+TagNm) 'nm (cadr L)) ) D)
-                                   ((cadr L) (new! '(+Tag) 'nm (request! '(+TagNm) 'nm (uppc (cadr L))) 'tsk (: home obj)))
+                                   ((and D (car L)) (put!> D 'nm (request! '(+TagNm) 'nm (car L)) ) D)
+                                   ((car L) (new! '(+Tag) 'nm (request! '(+TagNm) 'nm (uppc (car L))) 'tsk (: home obj)))
                                    (T D))
                             )
                      )
@@ -46,10 +46,9 @@
                            '(NIL NIL NIL NIL)
                            (do 10
                               (<row> (alternating)
-                                 (gui 1 '(+DstButton))
-                                 (gui 2 '(+DbHint +TextField) '(nm +TagNm) 10)
-                                 (gui 3 '(+DelRowButton))
-                                 (gui 4 '(+BubbleButton)) ) )
+                                 (gui 1 '(+DbHint +TextField) '(nm +TagNm) 10)
+                                 (gui 2 '(+DelRowButton))
+                                 (gui 3 '(+BubbleButton)) ) )
                      )
                      (scroll 10 T)
                   )
