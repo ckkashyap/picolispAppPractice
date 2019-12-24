@@ -19,8 +19,11 @@
                      ("Home" "!work")
                      (NIL (<hr>))
                      (T ""
-                        ("Tasks" (and "task.l")))
-                      ) )
+                        ("Tasks" (and "task.l"))
+                        ("Tags" (and "tag.l"))
+                     )
+                  ) 
+               )
                ((NIL NIL 'main)
                   (<div> @ (run Prg 1)) ) ) ) ) ) )
 
@@ -38,6 +41,7 @@
           "Title" (gui 'ttl '(+DbHint +Var +TextField) '(ttl +Task) '*Title 100)
           "Contains" (gui 'tags '(+Var +Val +ListTextField) '*Tags1 '((L) (extract uppc L)) '(","," ") 100)
           "!Contains" (gui 'tags2 '(+Var +Val +ListTextField) '*Tags2 '((L) (extract uppc L)) '(","," ") 100)
+          "Due Date" (gui 'date '(+Var +DateField) '*Due 100)
           (searchButton '(init> (: home query)))
           (gui '(+Button) "Work" '(setq *Tags1 "WORK OPEN") )
           (gui '(+Button) "Fun" '(setq *Tags1 "FUN OPEN") )
@@ -48,11 +52,12 @@
                 @Tags1 *Tags1
                 @Tags2 *Tags2
                 @Key (car *Tags1)
-                @X NIL
+                @Tdy (cons (date))
                 (select (@@)
                    #((nm +TagNm @Key (nm +Tag) tsk))
-                   ((ttl +Task @X))
+                   ((ttl +Task NIL))
                    (part @Ttl @@ ttl)
+                   (range @Tdy @@ dt)
                    (^ @ 
                       (fully 
                           '((Nm) 
